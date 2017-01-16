@@ -24,7 +24,7 @@
     type: field_filter
     explore: event
     field: event.event_type
-    default_value: "https://www.contentful.com"
+    default_value: "https://www.contentful.com/"
     
   - name: event_2
     type: field_filter
@@ -36,13 +36,13 @@
     type: field_filter
     explore: event
     field: event.event_type
-    default_value: "https://www.contentful.com/resources/"
+    default_value: "https://www.contentful.com/sign-up/#small"
     
   - name: event_4
     type: field_filter
     explore: event
     field: event.event_type
-    default_value: "https://www.contentful.com/sign-up/#small"
+    default_value: "https://www.contentful.com/resources/"
 
 
   elements:
