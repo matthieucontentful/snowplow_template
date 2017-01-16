@@ -2,7 +2,7 @@
 # Authors: Kevin Marr (marr@looker.com), Spencer Wanlass (swanlass@looker.com), Erin Franz (erin@looker.com)
 
 - view: event
-  sql_table_name: demo.events
+  sql_table_name: snowplow_atomic.events
   fields:
   
 
@@ -69,7 +69,7 @@
     sql: ${TABLE}.event_id
 
   - dimension: transaction_id
-    type: int
+    type: number
     sql: ${TABLE}.txn_id
     
   - measure: count
@@ -124,7 +124,7 @@
 
   - measure: user.events_per_user
     type: number
-    decimals: 2
+    value_format_name: decimal_2
     sql: ${count}::float / NULLIF(${user.count}, 0)
 
 
@@ -135,11 +135,11 @@
     sql: ${TABLE}.dvce_ismobile
 
   - dimension: device.screen_height
-    type: int
+    type: number
     sql: ${TABLE}.dvce_screenheight
 
   - dimension: device.screen_width
-    type: int
+    type: number
     sql: ${TABLE}.dvce_screenwidth
 
   - dimension: device.type
@@ -221,7 +221,7 @@
     sql: ${TABLE}.page_urlpath
 
   - dimension: page.url_port
-    type: int
+    type: number
     sql: ${TABLE}.page_urlport
 
   - dimension: page.url_query
@@ -249,7 +249,7 @@
     sql: ${TABLE}.refr_urlpath
 
   - dimension: page.referrer_url_port
-    type: int
+    type: number
     sql: ${TABLE}.refr_urlport
 
   - dimension: page.referrer_url_query
@@ -268,11 +268,11 @@
     sql: ${TABLE}.doc_charset
 
   - dimension: document.height
-    type: int
+    type: number
     sql: ${TABLE}.doc_height
 
   - dimension: document.width
-    type: int
+    type: number
     sql: ${TABLE}.doc_width
 
 
@@ -377,30 +377,30 @@
     sql: ${TABLE}.br_version
 
   - dimension: browser.view_height
-    type: int
+    type: number
     sql: ${TABLE}.br_viewheight
 
   - dimension: browser.view_width
-    type: int
+    type: number
     sql: ${TABLE}.br_viewwidth
 
 
 # Page Ping Fields #
 
   - dimension: page_ping.x_offset_max
-    type: int
+    type: number
     sql: ${TABLE}.pp_xoffset_max
 
   - dimension: page_ping.x_offset_min
-    type: int
+    type: number
     sql: ${TABLE}.pp_xoffset_min
 
   - dimension: page_ping.y_offset_max
-    type: int
+    type: number
     sql: ${TABLE}.pp_yoffset_max
 
   - dimension: page_ping.y_offset_min
-    type: int
+    type: number
     sql: ${TABLE}.pp_yoffset_min
 
 
@@ -423,7 +423,7 @@
     sql: ${TABLE}.ti_price
 
   - dimension: transaction_item.quantity
-    type: int
+    type: number
     sql: ${TABLE}.ti_quantity
 
   - dimension: transaction_item.sku

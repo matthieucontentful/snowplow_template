@@ -23,7 +23,7 @@
           , max(dvce_created_tstamp) AS dvce_max_tstamp
           , count(1) as number_of_events
           , count(distinct(floor(extract(epoch from dvce_created_tstamp)/30)))/2::float AS time_engaged_with_minutes
-        from demo.events
+        from snowplow_atomic.events
         where domain_userid is not null
           and domain_sessionidx is not null
           and domain_userid != ''
@@ -93,7 +93,7 @@
           , first_value((CASE WHEN refr_urlhost = '' OR refr_medium = 'internal' THEN NULL ELSE refr_urlhost END) ignore nulls) over (partition by domain_userid, domain_sessionidx order by dvce_created_tstamp rows between unbounded preceding and unbounded following) as refr_urlhost
           , first_value((CASE WHEN refr_urlpath = '' OR refr_medium = 'internal' THEN NULL ELSE refr_urlpath END) ignore nulls) over (partition by domain_userid, domain_sessionidx order by dvce_created_tstamp rows between unbounded preceding and unbounded following) as refr_urlpath
           
-        from demo.events
+        from snowplow_atomic.events
         where domain_userid is not null
           and domain_sessionidx is not null
           and domain_userid != ''
@@ -182,18 +182,18 @@
 
   - measure: average_number_of_events
     type: average
-    decimals: 2
+    value_format_name: decimal_2
     sql: ${number_of_events}
 
   - measure: average_duration_minutes
     type: average
-    decimals: 2
+    value_format_name: decimal_2
     sql: ${duration_minutes}
 
   - measure: sessions_per_user
     type: number
     sql: ${count}::float/NULLIF(${user.count},0)
-    decimals: 2
+    value_format_name: decimal_2
 
   - measure: user.count
     type: count_distinct

@@ -1,4 +1,4 @@
-- connection: snowplow_demo
+- connection: "ctfl_redshift"
 
 - include: "*.view.lookml"       # include all the views
 - include: "*.dashboard.lookml"  # include all the dashboards

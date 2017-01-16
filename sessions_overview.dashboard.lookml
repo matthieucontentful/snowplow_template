@@ -18,31 +18,31 @@
   - name: date
     title: Date
     type: date_filter
-    default_value: 2015
+    default_value: 2017
 
   - name: event_1
     type: field_filter
     explore: event
     field: event.event_type
-    default_value: "http://snowplowanalytics.com/"
+    default_value: "https://www.contentful.com"
     
   - name: event_2
     type: field_filter
     explore: event
     field: event.event_type
-    default_value: "http://snowplowanalytics.com/product/index.html"
+    default_value: "https://www.contentful.com/pricing/"
     
   - name: event_3
     type: field_filter
     explore: event
     field: event.event_type
-    default_value: "http://snowplowanalytics.com/analytics/index.html"
+    default_value: "https://www.contentful.com/resources/"
     
   - name: event_4
     type: field_filter
     explore: event
     field: event.event_type
-    default_value: "Funnel analysis - Snowplow Analytics"
+    default_value: "https://app.contentful.com"
 
 
   elements:
@@ -50,7 +50,7 @@
   - name: total_sessions
     title: Total Sessions
     type: single_value
-    model: snowplow
+    model: test_snowplow
     explore: session
     measures: [session.count]
     listen:
@@ -65,7 +65,7 @@
   - name: unique_users
     title: Unique Users
     type: single_value
-    model: snowplow
+    model: test_snowplow
     explore: session
     measures: [user.count]
     listen:
@@ -80,7 +80,7 @@
   - name: sessions_per_user
     title: Sessions per User
     type: single_value
-    model: snowplow
+    model: test_snowplow
     explore: session
     measures: [session.sessions_per_user]
     listen:
@@ -94,7 +94,7 @@
   - name: minutes_per_session
     title: Minutes per Session
     type: single_value
-    model: snowplow
+    model: test_snowplow
     explore: session
     measures: [session.average_duration_minutes]
     listen:
@@ -108,7 +108,7 @@
   - name: sessions_bounced_pie
     title: Sessions Bounced vs. Not Bounced
     type: looker_pie
-    model: snowplow
+    model: test_snowplow
     explore: session
     dimensions: [session.bounced]
     measures: [session.count]
@@ -123,7 +123,7 @@
   - name: sessions_new_repeat_pie
     title: Sessions by New vs. Repeat User
     type: looker_pie
-    model: snowplow
+    model: test_snowplow
     explore: session
     dimensions: [session.is_first_session]
     measures: [session.count]
@@ -139,7 +139,7 @@
   - name: daily_sessions_by_bounce
     title: Daily Sessions by Bounced (Y/N)
     type: looker_area
-    model: snowplow
+    model: test_snowplow
     explore: session
     dimensions: [session.bounced, session.start_date]
     pivots: [session.bounced]
@@ -171,7 +171,7 @@
   - name: daily_sessions_by_new_repeat
     title: Daily Sessions by New Visitor (Y/N)
     type: looker_area
-    model: snowplow
+    model: test_snowplow
     explore: session
     dimensions: [session.is_first_session, session.start_date]
     pivots: [session.is_first_session]
@@ -203,7 +203,7 @@
   - name: custom_funnel
     title: Custom Funnel Analysis
     type: looker_column
-    model: snowplow
+    model: test_snowplow
     explore: event
     measures: [funnel.event_1_count_sessions, funnel.event_2_count_sessions, funnel.event_3_count_sessions,
       funnel.event_4_count_sessions]
