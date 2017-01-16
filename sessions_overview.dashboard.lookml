@@ -42,7 +42,7 @@
     type: field_filter
     explore: event
     field: event.event_type
-    default_value: "https://app.contentful.com"
+    default_value: "https://www.contentful.com/sign-up/#small"
 
 
   elements:
