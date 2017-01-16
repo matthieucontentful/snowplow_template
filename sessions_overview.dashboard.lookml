@@ -201,7 +201,7 @@
     interpolation: linear
     
   - name: custom_funnel
-    title: Custom Funnel Analysis
+    title: Page Viewed
     type: looker_column
     model: test_snowplow
     explore: event
