@@ -5,7 +5,7 @@
   derived_table:
   
     # Rebuilds at midnight database time. Adjust as needed.
-    sql_trigger_value: select current_date
+    sql_trigger_value: SELECT DATE_PART('hour', GETDATE())
     
     sortkeys: [start_at, domain_userid, domain_sessionidx]
     distkey: domain_userid
