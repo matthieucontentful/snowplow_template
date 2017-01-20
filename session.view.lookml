@@ -30,6 +30,8 @@
           and dvce_created_tstamp IS NOT NULL
           and dvce_created_tstamp > '2000-01-01' -- Prevent SQL errors
           and dvce_created_tstamp < '2030-01-01' -- Prevent SQL errors
+          and page_url not like '%app.flinkly.com%'
+          and page_url not like '%api.storageroomapp.com%'
         group by 1, 2, 3
       ),
       
@@ -105,7 +107,9 @@
       select a.domain_userid
         , a.domain_sessionidx
         , a.start_at
-        , least(a.last_event_at + interval '1 minute', lead(a.start_at) over (partition by a.domain_userid order by a.domain_sessionidx)) as end_at
+        , least(a.last_event_at + interval '1 minute'
+                , lead(a.start_at) over (partition by a.domain_userid order by a.domain_sessionidx)
+                ) as end_at
         , a.number_of_events
         , a.time_engaged_with_minutes
         , b.*
