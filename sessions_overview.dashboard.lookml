@@ -50,7 +50,7 @@
   - name: total_sessions
     title: Total Sessions
     type: single_value
-    model: test_snowplow
+    model: snowplow_explore
     explore: session
     measures: [session.count]
     listen:
